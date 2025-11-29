@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import { Product } from "../../types/product";
 
@@ -22,6 +22,21 @@ interface ProductsGalleryProps {
 export function ProductsSection({ products }: ProductsGalleryProps) {
     const [activeFilter, setActiveFilter] = useState<FilterId>("All");
     const [page, setPage] = useState(1);
+    const listTopRef = useRef<HTMLDivElement | null>(null);
+
+    const scrollToTop = () => {
+        if (listTopRef.current) {
+            listTopRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    };
+
+    const changePage = (newPage: number) => {
+        setPage(newPage);
+        scrollToTop();
+    };
 
     const filteredProducts = useMemo(() => {
         if (activeFilter === "All") return products;
@@ -37,11 +52,8 @@ export function ProductsSection({ products }: ProductsGalleryProps) {
     const endIndex = startIndex + PAGE_SIZE;
     const visibleProducts = filteredProducts.slice(startIndex, endIndex);
 
-    const goPrev = () => setPage((p) => Math.max(1, p - 1));
-    const goNext = () => setPage((p) => Math.min(totalPages, p + 1));
-
     return (
-        <section className="bg-[#FFF7EC] py-4 md:py-6">
+        <section className="bg-[#FFF7EC] py-4 md:py-6" ref={listTopRef}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Título */}
                 <div className="mb-6 flex flex-col gap-2 text-center md:mb-8 md:text-left">
@@ -149,7 +161,7 @@ export function ProductsSection({ products }: ProductsGalleryProps) {
                                 <div className="order-1 flex items-center gap-2 sm:order-2">
                                     <button
                                         type="button"
-                                        onClick={goPrev}
+                                        onClick={() => changePage(page - 1)}
                                         disabled={page === 1}
                                         className={[
                                             "inline-flex h-8 items-center rounded-full px-3 text-xs font-semibold transition-all",
@@ -170,7 +182,7 @@ export function ProductsSection({ products }: ProductsGalleryProps) {
                                                 <button
                                                     key={current}
                                                     type="button"
-                                                    onClick={() => setPage(current)}
+                                                    onClick={() => changePage(current)}
                                                     className={[
                                                         "h-2.5 w-2.5 rounded-full transition-all",
                                                         isActive
@@ -185,7 +197,7 @@ export function ProductsSection({ products }: ProductsGalleryProps) {
 
                                     <button
                                         type="button"
-                                        onClick={goNext}
+                                        onClick={() => changePage(page + 1)}
                                         disabled={page === totalPages}
                                         className={[
                                             "inline-flex h-8 items-center rounded-full px-3 text-xs font-semibold transition-all",

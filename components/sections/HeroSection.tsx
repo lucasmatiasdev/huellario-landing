@@ -13,7 +13,7 @@ export function HeroSection() {
     return (
         <section className="relative overflow-hidden bg-[#16A394] text-white">
             {/* PATRÓN DE HUELLA DECORATIVO */}
-            <div className="pointer-events-none absolute -right-16 -top-4 hidden h-72 w-72 rotate-12 md:block">
+            <div className="pointer-events-none absolute -right-16 -top-12 hidden h-72 w-72 rotate-12 md:block">
                 {/* halo de color de fondo */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF9F66]/35 via-[#4FB6B0]/30 to-[#F7C948]/30 blur-md"></div>
 
@@ -60,9 +60,6 @@ export function HeroSection() {
                                 </span>
                                 <span className="flex-1 text-left tracking-wide">
                                     {cat.label}
-                                </span>
-                                <span className="pr-2 text-xs opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                    Ver más →
                                 </span>
                             </button>
                         ))}
