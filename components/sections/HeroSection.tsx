@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const categories = [
     { label: "Vestimenta", icon: "👕" },
@@ -10,6 +11,17 @@ const categories = [
 ];
 
 export function HeroSection() {
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const href = e.currentTarget.getAttribute("href");
+        if (href?.startsWith("#")) {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                close();
+            }
+        }
+    };
     return (
         <section className="relative overflow-hidden bg-[#16A394] text-white">
             {/* PATRÓN DE HUELLA DECORATIVO */}
@@ -67,14 +79,15 @@ export function HeroSection() {
 
                     {/* CTA */}
                     <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                        <a
-                            href="#products"
+                        <Link
+                            onClick={handleScroll}
+                            href="#Productos"
                             className="inline-flex items-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#0F7F74] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                         >
                             Ver productos
-                        </a>
+                        </Link>
                         <a
-                            href="https://wa.me/XXXXXXXXXXX"
+                            href="xxx"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-2 text-sm font-medium text-white transition hover:bg-white/10"

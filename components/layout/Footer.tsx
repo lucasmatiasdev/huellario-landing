@@ -1,4 +1,4 @@
-// components/layout/FooterHuellario.tsx
+"use client";
 import Link from "next/link";
 
 interface FooterHuellarioProps {
@@ -10,12 +10,25 @@ interface FooterHuellarioProps {
 }
 
 export function Footer({
-    email = "hola@huellario.com",
-    phone = "+54 11 1234-5678",
-    instagramUrl = "https://instagram.com/tu_instagram",
-    facebookUrl = "https://facebook.com/tu_facebook",
-    whatsappUrl = "https://wa.me/5491112345678",
+    email = "xxx",
+    phone = "xxx",
+    instagramUrl = "xxx",
+    facebookUrl = "xxx",
+    whatsappUrl = "xxx",
 }: FooterHuellarioProps) {
+
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const href = e.currentTarget.getAttribute("href");
+        if (href?.startsWith("#")) {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                close();
+            }
+        }
+    };
+
     return (
         <footer className="mt-10 bg-[#16A394] text-white">
             <div className="mx-auto max-w-6xl px-4 py-6 md:py-7">
@@ -47,28 +60,31 @@ export function Footer({
                         </h3>
                         <ul className="mt-3 space-y-1.5 text-sm">
                             <li>
-                                <a
+                                <Link
                                     href="#Inicio"
                                     className="transition-colors hover:text-[#F7C948]"
+                                    onClick={handleScroll}
                                 >
                                     Inicio
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="#Productos"
                                     className="transition-colors hover:text-[#F7C948]"
+                                    onClick={handleScroll}
                                 >
                                     Productos
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     href="#Beneficios"
                                     className="transition-colors hover:text-[#F7C948]"
+                                    onClick={handleScroll}
                                 >
                                     Beneficios
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -103,7 +119,7 @@ export function Footer({
                             Seguinos
                         </h4>
                         <div className="mt-2 flex flex-wrap gap-2">
-                            <a
+                           {/*<a
                                 href={instagramUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -111,7 +127,7 @@ export function Footer({
                                 className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#16A394] text-xs sm:text-sm font-semibold shadow-sm shadow-black/20 transition hover:-translate-y-0.5 hover:bg-[#FF9F66] hover:text-white"
                             >
                                 IG
-                            </a>
+                            </a>*/}
                             <a
                                 href={facebookUrl}
                                 target="_blank"
@@ -142,13 +158,13 @@ export function Footer({
                     </p>
                     <div className="flex flex-wrap gap-3">
                         <Link
-                            href="#"
+                            href="/about/privacidad"
                             className="hover:text-[#F7C948] transition-colors"
                         >
                             Política de privacidad
                         </Link>
                         <Link
-                            href="#"
+                            href="/about/terminos-condiciones"
                             className="hover:text-[#F7C948] transition-colors"
                         >
                             Términos y condiciones
