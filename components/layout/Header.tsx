@@ -10,18 +10,6 @@ export function Header() {
     const toggle = () => setOpen((prev) => !prev);
     const close = () => setOpen(false);
 
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const href = e.currentTarget.getAttribute("href");
-        if (href?.startsWith("#")) {
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-                close();
-            }
-        }
-    };
-
     return (
         <header className="sticky top-0 z-30 bg-[#FFF7EC]/95 backdrop-blur border-b border-[#F3E4D8]">
             <div className="mx-auto max-w-6xl px-4">
@@ -55,21 +43,18 @@ export function Header() {
                     <nav className="hidden items-center gap-6 text-sm font-medium text-[#0F7F74] md:flex">
                         <Link
                             href="#Inicio"
-                            onClick={handleScroll}
                             className="hover:text-[#FF9F66] transition-colors"
                         >
                             Inicio
                         </Link>
                         <Link
                             href="#Productos"
-                            onClick={handleScroll}
                             className="hover:text-[#FF9F66] transition-colors"
                         >
                             Productos
                         </Link>
                         <Link
                             href="#Beneficios"
-                            onClick={handleScroll}
                             className="hover:text-[#FF9F66] transition-colors"
                         >
                             Beneficios

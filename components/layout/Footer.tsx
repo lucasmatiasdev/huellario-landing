@@ -10,25 +10,12 @@ interface FooterHuellarioProps {
 }
 
 export function Footer({
-    email = "xxx",
-    phone = "xxx",
-    instagramUrl = "xxx",
-    facebookUrl = "xxx",
-    whatsappUrl = "xxx",
+    email = "huellariopetshop@gmail.com",
+    phone = "+54 11 2190-0861",
+    instagramUrl = "https://instagram.com/tu_instagram",
+    facebookUrl = "https://www.facebook.com/profile.php?id=61579847072165",
+    whatsappUrl = "https://api.whatsapp.com/send?phone=541121900861&text=%F0%9F%90%B6%20Hola%2C%20Huellario!%20%F0%9F%90%B1",
 }: FooterHuellarioProps) {
-
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const href = e.currentTarget.getAttribute("href");
-        if (href?.startsWith("#")) {
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-                close();
-            }
-        }
-    };
-
     return (
         <footer className="mt-10 bg-[#16A394] text-white">
             <div className="mx-auto max-w-6xl px-4 py-6 md:py-7">
@@ -63,7 +50,6 @@ export function Footer({
                                 <Link
                                     href="#Inicio"
                                     className="transition-colors hover:text-[#F7C948]"
-                                    onClick={handleScroll}
                                 >
                                     Inicio
                                 </Link>
@@ -72,7 +58,6 @@ export function Footer({
                                 <Link
                                     href="#Productos"
                                     className="transition-colors hover:text-[#F7C948]"
-                                    onClick={handleScroll}
                                 >
                                     Productos
                                 </Link>
@@ -81,7 +66,6 @@ export function Footer({
                                 <Link
                                     href="#Beneficios"
                                     className="transition-colors hover:text-[#F7C948]"
-                                    onClick={handleScroll}
                                 >
                                     Beneficios
                                 </Link>

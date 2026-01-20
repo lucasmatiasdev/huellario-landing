@@ -11,17 +11,6 @@ const categories = [
 ];
 
 export function HeroSection() {
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const href = e.currentTarget.getAttribute("href");
-        if (href?.startsWith("#")) {
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-                close();
-            }
-        }
-    };
     return (
         <section className="relative overflow-hidden bg-[#16A394] text-white">
             {/* PATRÓN DE HUELLA DECORATIVO */}
@@ -80,14 +69,13 @@ export function HeroSection() {
                     {/* CTA */}
                     <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
                         <Link
-                            onClick={handleScroll}
                             href="#Productos"
                             className="inline-flex items-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#0F7F74] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                         >
                             Ver productos
                         </Link>
                         <a
-                            href="xxx"
+                            href="https://api.whatsapp.com/send?phone=541121900861&text=%F0%9F%90%B6%20Hola%2C%20Huellario!%20%F0%9F%90%B1"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-2 text-sm font-medium text-white transition hover:bg-white/10"
